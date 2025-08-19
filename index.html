@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nông Quỳnh Đức</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: black;
+      overflow: hidden;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      width: 2px;
+      height: 2px;
+      opacity: 0.8;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+
+    /* Sao băng */
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(white, transparent);
+      opacity: 0.8;
+    }
+
+    /* Sao băng chỉ bay từ trái sang phải chéo xuống */
+    @keyframes move-diagonal-right {
+      from { transform: translate(0,0) rotate(-45deg); opacity: 1; }
+      to   { transform: translate(800px, 800px) rotate(-45deg); opacity: 0; }
+    }
+
+    /* Card */
+    .card {
+      background: rgba(105, 15, 98, 0.293);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      height: 630px;
+      width: 930px;
+      display: flex;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      animation: fadeIn 1.2s ease-in-out;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .card-left { flex: 1.1; text-align: center; color: #fff; }
+
+    .sub-card {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border-radius: 15px;
+      height: 550px;
+      width: 450px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: 0.4s;
+      margin: 25px;
+      text-align: center;
+    }
+
+    .sub-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 4px solid #36cdca;
+      box-shadow: 0 0 25px #6eb1cf, 0 0 50px #ba147a, 0 0 50px #ff0000 ,0 0 25px #d7d418 ;
+      margin-bottom: 10px;
+      object-fit: cover;
+      margin-top: 30px;
+      animation: glow 2.5s infinite alternate;
+    }
+
+    h1 {
+      color: white;
+      margin: 30px;
+      font-size: 50px;
+      font-family: 'Times New Roman', Times, serif;
+      letter-spacing: 3.2px;
+      text-transform: uppercase;
+      font-weight: 400;
+      animation: neon 2s infinite alternate;
+    }
+
+    @keyframes neon {
+      from { text-shadow: 0 0 5px #37b6a5,0 0 10px #34811a,0 0 20px #8e276a,0 0 40px #6d2090,0 0 80px #a62957; color: #fff; }
+      to   { text-shadow: 0 0 10px #379260,0 0 20px rgb(112,36,106),0 0 40px rgba(164,20,47,0.6),0 0 80px rgb(47,154,14),0 0 120px rgb(30,123,182); color: #4facfe; }
+    }
+
+    h2 { color: #00f2fe;
+       font-size: 40px; 
+       margin: 20px;
+       font-weight: 150;
+       font-family: 'Times New Roman', Times, serif;
+    }
+
+    p { color: #1ba219; font-size: 25px;
+       margin: 15px ;
+       font-family: 'Times New Roman', Times, serif;
+       font-weight: 100;
+    }
+
+    h3 {color: #a25019; font-size: 25px;
+       margin: 25px ;
+       font-family: 'Times New Roman', Times, serif;
+       font-weight: 150;
+    }
+
+    h4 {
+      font-size: 25px;
+      margin: 25px;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 150;
+      color: #ff0000;
+      animation: ledTwoColor 2.5s infinite alternate;
+    }
+
+    @keyframes ledTwoColor {
+      from {
+        color: #ff0000;
+        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff4d4d, 0 0 40px #ff1a1a;
+      }
+      to {
+        color: #00ffea;
+        text-shadow: 0 0 10px #00fff2, 0 0 20px #4dfff7, 0 0 40px #1afff2;
+      }
+    }
+
+    .sub-card h2 { color: #fff; font-size: 21px; margin: 20px; }
+
+    .social-links {
+      display: flex; flex-direction: column; gap: 18px; margin-top: 20px; align-items: flex-start;
+    }
+    .social-links a {
+      display: flex; align-items: center; gap: 17px; padding: 10px 50px;
+      border-radius: 10px; background: rgba(255,255,255,0.08);
+      color: #fff; font-size: 18px; text-decoration: none;
+      transition: 0.3s; width: 250px; margin-left: 14px;
+    }
+    .social-links a i { font-size: 24px; }
+    .social-links a:hover { transform: scale(1.05); box-shadow: 0 0 20px #fff, 0 0 35px #4facfe; }
+    .facebook:hover { background: #3b5998; }
+    .instagram:hover { background: #e1306c; }
+    .github:hover { background: #333; }
+    .tiktok:hover { background: #000; }
+    .youtube:hover { background: #ff0000; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes glow { from { box-shadow: 0 0 20px #2c7584, 0 0 40px #7e54a6; } to { box-shadow: 0 0 40px #9b1b68, 0 0 80px #6866ae; } }
+  </style>
+</head>
+<body>
+  <script>
+  
+    for(let i=0; i<150; i++){
+      let star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random()*100 + "vh";
+      star.style.left = Math.random()*100 + "vw";
+      document.body.appendChild(star);
+    }
+    function createShootingStar() {
+      let shooting = document.createElement("div");
+      shooting.className = "shooting-star";
+
+      shooting.style.top = Math.random() * 40 + "vh";   
+      shooting.style.left = Math.random() * 40 + "vw";  
+
+      // Animation
+      let duration = (1.5 + Math.random()*1.5) + "s";
+      shooting.style.animation = `move-diagonal-right ${duration} linear forwards`;
+
+      // Xóa sao băng khi kết thúc
+      shooting.addEventListener("animationend", () => {
+        shooting.remove();
+      });
+
+      document.body.appendChild(shooting);
+    }
+
+    // Tạo sao băng liên tục )
+    setInterval(() => {
+      createShootingStar();
+    }, 1000 + Math.random()*2000);
+  </script>
+
+  <div class="card">
+    <div class="card-left">
+      <h1>Nông Quỳnh Đức</h1>
+      <h2>Biệt danh: Apple </h2>
+      <h3>Tuổi:18<span style="margin-left: 100px;">Giới tính: Nam</span></h3>
+      <p> Sở Thích: Nghe nhạc, Lập trình</p>
+      <h4>Tình trạng: Độc Thân</h4><br>
+      <p>Tính cách: Nhây, Tốt bụng</p>
+      <p>Sinh sống tại: Cao Bằng</p>
+    </div>
+
+    <div class="sub-card">
+      <img src="D:\Downloads\dack.jpg" alt="Avatar" class="avatar">
+      <h2>Kết nối với tôi</h2>
+      <div class="social-links">
+        <a href="https://www.facebook.com/chuotngduccgcii/?locale=vi_VN" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+        <a href="https://www.instagram.com/duccnong/" target="_blank" class="instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+        <a href="https://github.com" target="_blank" class="github"><i class="fab fa-github"></i><span>Github</span></a>
+        <a href="https://www.tiktok.com/@nngs.cc" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i><span>Tiktok</span></a>
+        <a href="https://www.youtube.com/@duc_adc" target="_blank" class="youtube"><i class="fab fa-youtube"></i><span>Youtube</span></a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
