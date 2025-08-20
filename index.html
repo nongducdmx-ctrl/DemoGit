@@ -18,6 +18,22 @@
       align-items: center;
     }
 
+    /* Thông báo xoay ngang */
+    .rotate-message {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      line-height: 100vh;
+      z-index: 9999;
+    }
+
+    /* Star và Card giữ nguyên */
     .star {
       position: absolute;
       background: white;
@@ -27,11 +43,7 @@
       opacity: 0.8;
       animation: twinkle 2s infinite alternate;
     }
-
-    @keyframes twinkle {
-      from { opacity: 0.2; }
-      to { opacity: 1; }
-    }
+    @keyframes twinkle { from { opacity: 0.2; } to { opacity: 1; } }
 
     .shooting-star {
       position: absolute;
@@ -40,13 +52,8 @@
       background: linear-gradient(white, transparent);
       opacity: 0.8;
     }
+    @keyframes move-diagonal-right { from { transform: translate(0,0) rotate(-45deg); opacity: 1; } to { transform: translate(800px, 800px) rotate(-45deg); opacity: 0; } }
 
-    @keyframes move-diagonal-right {
-      from { transform: translate(0,0) rotate(-45deg); opacity: 1; }
-      to   { transform: translate(800px, 800px) rotate(-45deg); opacity: 0; }
-    }
-
-    /* Card */
     .card {
       background: rgba(105, 15, 98, 0.293);
       backdrop-filter: blur(12px);
@@ -61,50 +68,18 @@
       z-index: 10;
       flex-wrap: nowrap; /* Giữ ngang */
     }
-
     .card-left { flex: 1 1 45%; text-align: center; color: #fff; }
-
-    .sub-card {
-      flex: 1 1 45%;
-      background: rgba(255,255,255,0.08);
-      border-radius: 15px;
-      height: 550px;
-      width: auto;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: 0.4s;
-      margin: 25px;
-      text-align: center;
-    }
-
-    .sub-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    }
-
-    .avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 4px solid #36cdca;
-      box-shadow: 0 0 25px #6eb1cf, 0 0 50px #ba147a, 0 0 50px #ff0000 ,0 0 25px #d7d418 ;
-      margin-bottom: 10px;
-      object-fit: cover;
-      margin-top: 30px;
-      animation: glow 2.5s infinite alternate;
-    }
-
+    .sub-card { flex: 1 1 45%; background: rgba(255,255,255,0.08); border-radius: 15px; height: 550px; width: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.4s; margin: 25px; text-align: center; }
+    .sub-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+    .avatar { width: 110px; height: 110px; border-radius: 50%; border: 4px solid #36cdca; box-shadow: 0 0 25px #6eb1cf, 0 0 50px #ba147a, 0 0 50px #ff0000 ,0 0 25px #d7d418 ; margin-bottom: 10px; object-fit: cover; margin-top: 30px; animation: glow 2.5s infinite alternate; }
     h1 { color: white; margin: 30px; font-size: 50px; font-family: 'Times New Roman', Times, serif; letter-spacing: 3.2px; text-transform: uppercase; font-weight: 400; animation: neon 2s infinite alternate; }
     @keyframes neon { from { text-shadow: 0 0 5px #37b6a5,0 0 10px #34811a,0 0 20px #8e276a,0 0 40px #6d2090,0 0 80px #a62957; color: #fff; } to { text-shadow: 0 0 10px #379260,0 0 20px rgb(112,36,106),0 0 40px rgba(164,20,47,0.6),0 0 80px rgb(47,154,14),0 0 120px rgb(30,123,182); color: #4facfe; } }
-
     h2 { color: #00f2fe; font-size: 40px; margin: 20px; font-weight: 150; font-family: 'Times New Roman', Times, serif; }
     p { color: #1ba219; font-size: 25px; margin: 15px; font-family: 'Times New Roman', Times, serif; font-weight: 100; }
     h3 {color: #a25019; font-size: 25px; margin: 25px; font-family: 'Times New Roman', Times, serif; font-weight: 150; }
     h4 { font-size: 25px; margin: 25px; font-family: 'Times New Roman', Times, serif; font-weight: 150; color: #ff0000; animation: ledTwoColor 2.5s infinite alternate; }
-
     @keyframes ledTwoColor { from { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff4d4d, 0 0 40px #ff1a1a; } to { color: #00ffea; text-shadow: 0 0 10px #00fff2, 0 0 20px #4dfff7, 0 0 40px #1afff2; } }
-
     .sub-card h2 { color: #fff; font-size: 21px; margin: 20px; }
-
     .social-links { display: flex; flex-direction: column; gap: 18px; margin-top: 20px; align-items: flex-start; }
     .social-links a { display: flex; align-items: center; gap: 17px; padding: 10px 50px; border-radius: 10px; background: rgba(255,255,255,0.08); color: #fff; font-size: 18px; text-decoration: none; transition: 0.3s; width: 250px; margin-left: 14px; }
     .social-links a i { font-size: 24px; }
@@ -114,7 +89,6 @@
     .github:hover { background: #333; }
     .tiktok:hover { background: #000; }
     .youtube:hover { background: #ff0000; }
-
     @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes glow { from { box-shadow: 0 0 20px #2c7584, 0 0 40px #7e54a6; } to { box-shadow: 0 0 40px #9b1b68, 0 0 80px #6866ae; } }
 
@@ -131,7 +105,11 @@
   </style>
 </head>
 <body>
+  <!-- Thông báo xoay ngang -->
+  <div class="rotate-message">Vui lòng xoay thiết bị sang ngang để xem trang</div>
+
   <script>
+    // Tạo sao
     for(let i=0; i<150; i++){
       let star = document.createElement("div");
       star.className = "star";
@@ -150,6 +128,24 @@
       document.body.appendChild(shooting);
     }
     setInterval(() => { createShootingStar(); }, 1000 + Math.random()*2000);
+
+    // Bắt buộc xoay ngang
+    function checkOrientation() {
+      const message = document.querySelector('.rotate-message');
+      const card = document.querySelector('.card');
+      if(window.innerHeight > window.innerWidth){ 
+        message.style.display = 'block';
+        card.style.display = 'none';
+        document.body.style.overflow = 'hidden'; 
+      } else { 
+        message.style.display = 'none';
+        card.style.display = 'flex';
+        document.body.style.overflow = 'auto';
+      }
+    }
+    window.addEventListener('load', checkOrientation);
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
   </script>
 
   <div class="card">
