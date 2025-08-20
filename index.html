@@ -11,7 +11,8 @@
       background: black;
       overflow: hidden;
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,7 +33,6 @@
       to { opacity: 1; }
     }
 
-    /* Sao băng */
     .shooting-star {
       position: absolute;
       width: 2px;
@@ -41,7 +41,6 @@
       opacity: 0.8;
     }
 
-    /* Sao băng chỉ bay từ trái sang phải chéo xuống */
     @keyframes move-diagonal-right {
       from { transform: translate(0,0) rotate(-45deg); opacity: 1; }
       to   { transform: translate(800px, 800px) rotate(-45deg); opacity: 0; }
@@ -52,20 +51,21 @@
       background: rgba(105, 15, 98, 0.293);
       backdrop-filter: blur(12px);
       border-radius: 20px;
-      height: 630px;
-      width: 930px;
+      width: 90%;
+      max-width: 930px;
       display: flex;
       justify-content: space-between;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       animation: fadeIn 1.2s ease-in-out;
       gap: 20px;
       z-index: 10;
+      flex-wrap: wrap; /* responsive */
     }
 
-    .card-left { flex: 1.1; text-align: center; color: #fff; }
+    .card-left { flex: 1 1 300px; text-align: center; color: #fff; }
 
     .sub-card {
-      flex: 1;
+      flex: 1 1 300px;
       background: rgba(255,255,255,0.08);
       border-radius: 15px;
       height: 550px;
@@ -109,24 +109,11 @@
       to   { text-shadow: 0 0 10px #379260,0 0 20px rgb(112,36,106),0 0 40px rgba(164,20,47,0.6),0 0 80px rgb(47,154,14),0 0 120px rgb(30,123,182); color: #4facfe; }
     }
 
-    h2 { color: #00f2fe;
-       font-size: 40px; 
-       margin: 20px;
-       font-weight: 150;
-       font-family: 'Times New Roman', Times, serif;
-    }
+    h2 { color: #00f2fe; font-size: 40px; margin: 20px; font-weight: 150; font-family: 'Times New Roman', Times, serif; }
 
-    p { color: #1ba219; font-size: 25px;
-       margin: 15px ;
-       font-family: 'Times New Roman', Times, serif;
-       font-weight: 100;
-    }
+    p { color: #1ba219; font-size: 25px; margin: 15px; font-family: 'Times New Roman', Times, serif; font-weight: 100; }
 
-    h3 {color: #a25019; font-size: 25px;
-       margin: 25px ;
-       font-family: 'Times New Roman', Times, serif;
-       font-weight: 150;
-    }
+    h3 {color: #a25019; font-size: 25px; margin: 25px; font-family: 'Times New Roman', Times, serif; font-weight: 150; }
 
     h4 {
       font-size: 25px;
@@ -138,14 +125,8 @@
     }
 
     @keyframes ledTwoColor {
-      from {
-        color: #ff0000;
-        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff4d4d, 0 0 40px #ff1a1a;
-      }
-      to {
-        color: #00ffea;
-        text-shadow: 0 0 10px #00fff2, 0 0 20px #4dfff7, 0 0 40px #1afff2;
-      }
+      from { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff4d4d, 0 0 40px #ff1a1a; }
+      to { color: #00ffea; text-shadow: 0 0 10px #00fff2, 0 0 20px #4dfff7, 0 0 40px #1afff2; }
     }
 
     .sub-card h2 { color: #fff; font-size: 21px; margin: 20px; }
@@ -169,11 +150,20 @@
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes glow { from { box-shadow: 0 0 20px #2c7584, 0 0 40px #7e54a6; } to { box-shadow: 0 0 40px #9b1b68, 0 0 80px #6866ae; } }
+
+    /* Responsive cho màn hình nhỏ */
+    @media screen and (max-width: 768px) {
+      .card { flex-direction: column; width: 95%; }
+      h1 { font-size: 32px; }
+      h2 { font-size: 24px; }
+      p, h3, h4 { font-size: 18px; }
+      .sub-card { width: 90%; height: auto; margin: 15px auto; }
+      .social-links a { width: 100%; padding: 10px; margin-left: 0; }
+    }
   </style>
 </head>
 <body>
   <script>
-  
     for(let i=0; i<150; i++){
       let star = document.createElement("div");
       star.className = "star";
@@ -184,26 +174,14 @@
     function createShootingStar() {
       let shooting = document.createElement("div");
       shooting.className = "shooting-star";
-
       shooting.style.top = Math.random() * 40 + "vh";   
       shooting.style.left = Math.random() * 40 + "vw";  
-
-      // Animation
       let duration = (1.5 + Math.random()*1.5) + "s";
       shooting.style.animation = `move-diagonal-right ${duration} linear forwards`;
-
-      // Xóa sao băng khi kết thúc
-      shooting.addEventListener("animationend", () => {
-        shooting.remove();
-      });
-
+      shooting.addEventListener("animationend", () => { shooting.remove(); });
       document.body.appendChild(shooting);
     }
-
-    // Tạo sao băng liên tục )
-    setInterval(() => {
-      createShootingStar();
-    }, 1000 + Math.random()*2000);
+    setInterval(() => { createShootingStar(); }, 1000 + Math.random()*2000);
   </script>
 
   <div class="card">
@@ -218,7 +196,7 @@
     </div>
 
     <div class="sub-card">
-      <img src="images/dack.png" alt="Avatar" class="avatar">
+      <img src="D:\Downloads\dack.png" alt="Avatar" class="avatar">
       <h2>Kết nối với tôi</h2>
       <div class="social-links">
         <a href="https://www.facebook.com/chuotngduccgcii/?locale=vi_VN" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
@@ -231,8 +209,3 @@
   </div>
 </body>
 </html>
-
-
-
-
-
