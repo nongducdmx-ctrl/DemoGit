@@ -6,19 +6,22 @@
   <title>Nông Quỳnh Đức</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
     body {
       font-family: "Poppins", sans-serif;
       background: black;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-y: scroll; 
+      position: relative;
     }
 
-    
     .rotate-message {
       display: none;
       position: fixed;
@@ -33,7 +36,6 @@
       z-index: 9999;
     }
 
-    
     .star {
       position: absolute;
       background: white;
@@ -43,7 +45,10 @@
       opacity: 0.8;
       animation: twinkle 2s infinite alternate;
     }
-    @keyframes twinkle { from { opacity: 0.2; } to { opacity: 1; } }
+    @keyframes twinkle {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
 
     .shooting-star {
       position: absolute;
@@ -57,7 +62,6 @@
       to { transform: translate(800px, 800px) rotate(-45deg); opacity: 0; }
     }
 
-    
     .card {
       background: rgba(105, 15, 98, 0.293);
       backdrop-filter: blur(12px);
@@ -73,13 +77,16 @@
       flex-wrap: nowrap;
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
+
     .card.hidden {
       opacity: 0;
       transform: scale(0.97);
       pointer-events: none;
     }
 
+    
     .card-left { flex: 1 1 45%; text-align: center; color: #fff; }
+
     .sub-card {
       flex: 1 1 45%;
       background: rgba(255,255,255,0.08);
@@ -91,6 +98,7 @@
       margin: 25px;
       text-align: center;
     }
+
     .sub-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
@@ -118,6 +126,7 @@
       font-weight: 400;
       animation: neon 2s infinite alternate;
     }
+
     @keyframes neon {
       from { text-shadow: 0 0 5px #37b6a5,0 0 10px #34811a,0 0 20px #8e276a,0 0 40px #6d2090,0 0 80px #a62957; color: #fff; }
       to { text-shadow: 0 0 10px #379260,0 0 20px rgb(112,36,106),0 0 40px rgba(164,20,47,0.6),0 0 80px rgb(47,154,14),0 0 120px rgb(30,123,182); color: #4facfe; }
@@ -167,7 +176,6 @@
     @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes glow { from { box-shadow: 0 0 20px #2c7584, 0 0 40px #7e54a6; } to { box-shadow: 0 0 40px #9b1b68, 0 0 80px #6866ae; } }
 
-    
     @media screen and (max-width: 768px) {
       .card { width: 95%; gap: 10px; flex-wrap: nowrap; }
       .card-left, .sub-card { flex: 1 1 45%; }
@@ -181,7 +189,7 @@
 </head>
 <body>
 
-  <div class="rotate-message">🔄 Vui lòng xoay thiết bị sang ngang</div>
+  <div class="rotate-message"> Vui lòng xoay thiết bị sang ngang</div>
 
   <div class="card">
     <div class="card-left">
@@ -190,7 +198,7 @@
       <h3>Tuổi 18<span style="margin-left: 100px;">Giới tính: Nam</span></h3>
       <p>Học tại khoa CNTT HUNRE</p>
       <h4>Độc Thân</h4><br>
-      <p> Rất Nhây, Rất Hiền, Dễ Gần</p>
+      <p>Rất Nhây, Rất Hiền, Dễ Gần</p>
       <p>Sống tại: Cao Bằng</p>
     </div>
 
@@ -209,7 +217,7 @@
 
   <script>
     
-    for(let i = 0; i < 150; i++){
+    for (let i = 0; i < 150; i++) {
       let star = document.createElement("div");
       star.className = "star";
       star.style.top = Math.random() * 100 + "vh";
@@ -228,12 +236,12 @@
       shooting.addEventListener("animationend", () => shooting.remove());
       document.body.appendChild(shooting);
     }
-    setInterval(createShootingStar, 1000 + Math.random() * 2000);
-
+    setInterval(createShootingStar, 1500);
 
     function checkOrientation() {
       const message = document.querySelector('.rotate-message');
       const card = document.querySelector('.card');
+
       if (window.innerHeight > window.innerWidth) {
         message.style.display = 'block';
         card.classList.add('hidden');
@@ -242,6 +250,7 @@
         card.classList.remove('hidden');
       }
     }
+
     window.addEventListener('load', checkOrientation);
     window.addEventListener('resize', checkOrientation);
     window.addEventListener('orientationchange', checkOrientation);
